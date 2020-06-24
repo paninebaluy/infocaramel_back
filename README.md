@@ -1,2 +1,2 @@
 # infocaramel_back
-Infocaramel back end on Express.js
+Infocaramel Backend on Express.js

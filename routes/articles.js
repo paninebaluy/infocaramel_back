@@ -7,6 +7,6 @@ const { articleValidator, mongooseObjectIdValidator } = require('../middleware/v
 
 router.get('/', getArticles); // возвращает все сохранённые пользователем статьи
 router.post('/', articleValidator, postArticle); // создаёт статью с переданными в теле keyword, title, text, date, source, link и image
-router.delete('/articleId', mongooseObjectIdValidator, deleteArticle); // удаляет сохранённую статью  по _id
+router.delete('/:id', mongooseObjectIdValidator, deleteArticle); // удаляет сохранённую статью  по _id
 
 module.exports = router;

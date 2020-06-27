@@ -38,15 +38,14 @@ const postArticle = (async (req, res, next) => {
 const deleteArticle = (async (req, res, next) => {
   try {
     const { id } = req.params;
-    const article = await Article.findById(id);
+    const article = await Article.findById(id).select('+owner');
     if (!article) {
-      return next(new NotFoundError('Not Found')); // здесь проверка, не удалена ли уже карточка
+      return next(new NotFoundError('Not Found')); // здесь проверка, не удалена ли уже статья из избранного
     }
     if (!article.owner.equals(req.user._id)) {
       return next(new ForbiddenError('Unauthorized')); // passes the data to errorHandler middleware
     }
-    const articleToDelete = await Article.findByIdAndRemove(id)
-      .populate('likes').populate('owner');
+    const articleToDelete = await Article.findByIdAndRemove(id);
     return res.status(200).send({ message: 'article deleted:', data: articleToDelete });
   } catch (err) {
     if (err instanceof mongoose.Error.CastError) {

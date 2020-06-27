@@ -9,7 +9,7 @@ const errors = {
   link: new BadRequestError('Link must be a valid URL.'),
   id: new BadRequestError('Must be a Mongoose ObjectID.'),
   login: new UnauthorizedError('The email or password you entered are not valid.'),
-  keyword: new BadRequestError('Article must have at least one keyword.'),
+  keyword: new BadRequestError('Article must have at least one keyword; min size is 2 symbols.'),
   title: new BadRequestError('Article must have a title; max size is 250 symbols.'),
   text: new BadRequestError('Article must have text; max size is 100 000 symbols.'),
   date: new BadRequestError('Creation date of the article must be valid.'),
@@ -24,7 +24,7 @@ const userValidator = celebrate({
       .regex(/[a-z0-9-+_=&?!.,%^:;<>#@*()~'"|\\/]{8,24}/i)
       .error(errors.password),
     name: Joi.string().required().min(2).max(30)
-      .regex(/^([a-zа-яё-]{2,30})$/i) // только имя, разрешен дефис
+      .regex(/^([a-zа-яё-]{2,30})$/i) // только имя, без пробелов, разрешен дефис
       .error(errors.name),
   }),
 });
@@ -40,15 +40,19 @@ const loginValidator = celebrate({
 
 const articleValidator = celebrate({
   body: Joi.object().keys({
-    keyword: Joi.string().required().min(1)
+    keyword: Joi.string().required().min(2)
+      .regex(/^\S.*/) // строки из пробелов не подходят
       .error(errors.keyword),
     title: Joi.string().required().min(2).max(250)
+      .regex(/^\S.*/) // строки из пробелов не подходят
       .error(errors.title),
     text: Joi.string().required().min(2).max(100000)
+      .regex(/^\S.*/) // строки из пробелов не подходят
       .error(errors.text),
-    date: Joi.date().required().max(Date.now())
+    date: Joi.date().required().less('now')
       .error(errors.date),
     source: Joi.string().required().min(2).max(250)
+      .regex(/^\S.*/) // строки из пробелов не подходят
       .error(errors.source),
     link: Joi.string().required()
       .regex(/^(https?):\/\/(w{3}\.)?(?!www)(([А-ЯЁа-яёA-Za-z0-9_-]+\.[А-ЯЁа-яёA-Za-z0-9_-]+(\.[А-ЯЁа-яёA-Za-z_-]+){0,2})|(((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)))(:\d{2,5})?(\/[A-Za-z0-9/\-_.#:?&~/=]*)?$/)
@@ -70,6 +74,5 @@ module.exports = {
   userValidator,
   loginValidator,
   articleValidator,
-  // profileUpdateValidator,
   mongooseObjectIdValidator,
 };

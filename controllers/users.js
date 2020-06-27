@@ -13,6 +13,7 @@ const { JWT_SECRET } = require('../config');
 const getUser = (async (req, res, next) => {
   try {
     const user = await User.findById(req.user._id);
+    console.log(req.user);
     if (!user) {
       throw new NotFoundError('Not Found');
     }
@@ -68,6 +69,10 @@ const login = (async (req, res, next) => {
     next(new UnauthorizedError(err.message)); // passes the data to error handler
   }
 });
+
+/* const logout = (async (req, res, next) => {
+
+}) */
 
 module.exports = {
   getUser,

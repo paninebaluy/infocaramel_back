@@ -7,6 +7,7 @@ const errorHandler = (error, req, res, next) => {
       message,
     },
   });
+  next();
 };
 
 module.exports = errorHandler;

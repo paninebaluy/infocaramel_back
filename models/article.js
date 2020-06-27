@@ -5,7 +5,7 @@ const articleSchema = new mongoose.Schema({
   keyword: {
     required: true,
     type: String,
-    minlength: 1,
+    minlength: 2,
   },
   title: {
     required: true,

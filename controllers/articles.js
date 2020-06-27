@@ -8,11 +8,9 @@ const BadRequestError = require('../errors/badRequestError');
 // GET /articles — возвращает все добавленные в избранное статьи
 const getArticles = (async (req, res, next) => {
   try {
-    const cards = await Article.find({})
-      .sort({ createdAt: -1 })
-      .populate('likes')
-      .populate('owner');
-    return res.status(200).send({ data: cards });
+    const articles = await Article.find({})
+      .sort({ createdAt: -1 });
+    return res.status(200).send({ data: articles });
   } catch (err) {
     return next(err); // passes the data to errorHandler middleware
   }
@@ -21,9 +19,13 @@ const getArticles = (async (req, res, next) => {
 // POST /articles — добавялет статью в избранное
 const postArticle = (async (req, res, next) => {
   try {
-    const { name, link } = req.body;
-    const card = await Article.create({ name, link, owner: req.user._id });
-    return res.status(201).send({ data: card });
+    const {
+      keyword, title, text, date, source, link, image,
+    } = req.body;
+    const article = await Article.create({
+      keyword, title, text, date, source, link, image, owner: req.user._id,
+    });
+    return res.status(201).send({ data: article });
   } catch (err) {
     if (err instanceof mongoose.Error.ValidationError) {
       return next(new BadRequestError(err.message));
@@ -36,16 +38,16 @@ const postArticle = (async (req, res, next) => {
 const deleteArticle = (async (req, res, next) => {
   try {
     const { id } = req.params;
-    const card = await Article.findById(id);
-    if (!card) {
+    const article = await Article.findById(id);
+    if (!article) {
       return next(new NotFoundError('Not Found')); // здесь проверка, не удалена ли уже карточка
     }
-    if (!card.owner.equals(req.user._id)) {
+    if (!article.owner.equals(req.user._id)) {
       return next(new ForbiddenError('Unauthorized')); // passes the data to errorHandler middleware
     }
-    const cardToDelete = await Article.findByIdAndRemove(id)
+    const articleToDelete = await Article.findByIdAndRemove(id)
       .populate('likes').populate('owner');
-    return res.status(200).send({ message: 'card deleted:', data: cardToDelete });
+    return res.status(200).send({ message: 'article deleted:', data: articleToDelete });
   } catch (err) {
     if (err instanceof mongoose.Error.CastError) {
       return next(new NotFoundError('Not Found'));

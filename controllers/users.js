@@ -26,19 +26,17 @@ const getUser = (async (req, res, next) => {
 const createUser = (async (req, res, next) => {
   try {
     const {
-      name, about, avatar, email, password,
+      email, password, name,
     } = req.body;
     const hash = await bcrypt.hash(password, 10);
     const user = await User.create({
-      name, about, avatar, email, password: hash,
+      email, password: hash, name,
     });
     return res.status(201).send({
       data: {
         _id: user._id,
-        name: user.name,
-        about: user.about,
-        avatar: user.avatar,
         email: user.email,
+        name: user.name,
       },
     }); // данные всех полей должны приходить в теле запроса (кроме пароля)
   } catch (err) {

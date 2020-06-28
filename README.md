@@ -49,7 +49,7 @@ or
 
 $> npm run dev
 
-    Backend server will start locally using port 3000 as default: http://localhost:3000
+    Backend server will start locally using port 3000 by default: http://localhost:3000
     Note: npm run dev will run the server with hot reload.
 
 It's recommended to test request scenarios using [Postman](https://www.postman.com/).

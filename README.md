@@ -138,7 +138,7 @@ $> npm run dev
 + Получить JSON с данными текущего авторизованного пользователя: **GET** https://api.infocara.ml/users/me
 + Добавить новостную статью: **POST** https://api.infocara.ml/articles *(тело запроса должно содержать такие поля: keyword (str, min 2 символов), title (str, 2-250 символов), text (2-100000 символов, учитывается возможность очень больших статей), date (любой валидный формат даты, которая должна быть в прошлом), source (str, 2-250 символов), link (url), image (url), owner (Mongoose Object ID, API его не возвращает))*
 + Получить JSON со всеми статьями: **GET** https://api.infocara.ml/articles
-+ Удалить статью, если её добавил авторизованный пользователь: **DELETE** https://api.infocara.ml/articles/articleId (only Mongoose Object ID format is valid)
++ Удалить статью, если её добавил авторизованный пользователь: **DELETE** https://api.infocara.ml/articles/articleId (идентификатор строго в формате Mongoose Object ID)
 
 ### Использованные технологии
 + Node.js

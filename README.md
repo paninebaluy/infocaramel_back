@@ -44,7 +44,9 @@ _(Linux and macOS)_
     Run script that starts the local server
 
 $> npm run start
+
 or
+
 $> npm run dev
 
     Backend server will start locally using port 3000 as default: http://localhost:3000
@@ -115,7 +117,9 @@ _(Linux и macOS)_
     Вызвать скрипт запуска сервера
 
 $> npm run start
+
 или
+
 $> npm run dev
 
     Сервер будел запущен локально, используя порт 3000 по умолчанию: http://localhost:3000

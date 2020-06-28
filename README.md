@@ -6,7 +6,7 @@ _version 1.1.0 &ndash; uploaded .env to remote server, added article deletion_
 
 News Explorer is a two-page website intended for searching the news database via NewsAPI and saving select articles to user's "favorited" page. This web site, including both frontend and backend parts, is the [Yandex.Praktikum](https://praktikum.yandex.ru/profile/web-developer/) diploma project.
 
-This repository holds News Explorer back end on Express.js and a database on MongoDB via Mongoose. 
+This repository holds News Explorer backend on Express.js and a database on MongoDB via Mongoose. 
 JWT tokens are stored in http request cookies.
 Server-side validation is handled with celebrate library, requests and errors are logged with winston.
 Server is protected with helmet and express-rate-limit. Both http and https requests are allowed.

@@ -1,6 +1,6 @@
 # [News Explorer Backend](https://api.infocara.ml/)
 ## EN
-[на русском](#Бэкенд News Explorer)
+[на русском](#бэкенд-news-explorer)
 
 _version 1.1.0 &ndash; uploaded .env to remote server, added article deletion_
 
@@ -69,7 +69,7 @@ It's recommended to test request scenarios using [Postman](https://www.postman.c
 + MongoDB
 + Mongoose
 
-[To top/Наверх](#News Express Backend)
+[To top/Наверх](#news-explorer-backend)
 
 # [Бэкенд News Explorer](https://api.infocara.ml/)
 ## RU
@@ -140,4 +140,4 @@ $> npm run dev
 + MongoDB
 + Mongoose
 
-[To top/Наверх](#News Express Backend)
+[To top/Наверх](#news-explorer-backend)

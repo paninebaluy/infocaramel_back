@@ -1,6 +1,6 @@
 # [News Explorer Backend](https://api.infocara.ml/)
 ## EN
-[на русском](#ru)
+[на русском](#Бэкенд News Explorer)
 
 _version 1.1.0 &ndash; uploaded .env to remote server, added article deletion_
 

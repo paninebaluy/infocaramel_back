@@ -13,8 +13,8 @@ Server is protected with helmet and express-rate-limit. Both http and https requ
 
 ## Availability
 
-- Back end API: https://api.infocara.ml/, http://api.infocara.ml/
-- Public back end server IP address: http://84.201.131.118/
+- Backend API: https://api.infocara.ml/, http://api.infocara.ml/
+- Public backend server IP address: http://84.201.131.118/
 
 ### How to start using it locally:
 
@@ -52,7 +52,7 @@ $> npm run dev
 
 It's recommended to test request scenarios using [Postman](https://www.postman.com/).
 
-#### Back end part of the project includes routing with Express.js + Node.js, and is connected to inforacaml database on MongoDB via Mongoose
+#### Backend part of the project includes routing with Express.js + Node.js, and is connected to inforacaml database on MongoDB via Mongoose
 ##### Here's what you can do:
 
 + Create new user (sign up): **POST** https://api.infocara.ml/signup *(request body must contain fields: email, password (>= 8 symbols), name (str, 2-30 symbols, no whitespaces))*
@@ -123,7 +123,7 @@ $> npm run dev
 
 Для проверки запросов рекомендую использовать [Postman](https://www.postman.com/).
    
-#### В бэкенд-части проекта реализованы роутинг на Express.js + Node.js, а также подключение к базе данных mestodb database на MongoDB через Mongoose
+#### В бэкенд-части проекта реализованы роутинг на Express.js + Node.js, а также подключение к базе данных infocaraml на MongoDB через Mongoose
 ##### Вот что здесь можно делать:
 
 + Создать нового пользователя (зарегистрироваться): **POST** https://api.infocara.ml/signup *(тело запроса должно содержать такие поля: email, password (>= 8 символов), name (str, 2-30 символов, без пробелов))*

@@ -34,7 +34,7 @@ const postArticle = (async (req, res, next) => {
   }
 });
 
-// DELETE /articles/articleId — удаляет статью из избранного по идентификатору
+// DELETE /articles/:id — удаляет статью из избранного по идентификатору
 const deleteArticle = (async (req, res, next) => {
   try {
     const { id } = req.params;
@@ -43,7 +43,7 @@ const deleteArticle = (async (req, res, next) => {
       return next(new NotFoundError('Not Found')); // здесь проверка, не удалена ли уже статья из избранного
     }
     if (!article.owner.equals(req.user._id)) {
-      return next(new ForbiddenError('Unauthorized')); // passes the data to errorHandler middleware
+      return next(new ForbiddenError('Forbidden')); // passes the data to errorHandler middleware
     }
     const articleToDelete = await Article.findByIdAndRemove(id);
     return res.status(200).send({ message: 'article deleted:', data: articleToDelete });
